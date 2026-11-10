@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> To Live</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <link href="static/styles.css" rel="stylesheet">
+        <meta name="author" content="Marcus Eng">
+    </head> 
+
+    <body>
+        <div id="darkness"></div>
+
+        <div id="scene">
+            <div id="candle_container">
+                <img src="static/candle_test.png" class="candle">
+            </div>
+        
+            <div id="story_container">
+                <div id="ui_container">
+                    <button id="btn" onclick=" lightACandle()">Take a peek at another life</button>
+                    <p>Count: <span id="candle_count">0</span></p>
+                </div>
+                <div id="text_container"> 
+                    <div id="story"></div>
+                </div>
+            </div>
+        </div>
+    
+        <script src="scripts.js"></script>   
+    </body>
+
+</html>
+

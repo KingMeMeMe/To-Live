@@ -1,0 +1,105 @@
+body {
+    justify-content: center;
+    background-color: rgb(22, 22, 28);
+    background-image: linear-gradient(to top,  rgb(18, 17, 21),  rgb(44, 50, 77));
+    overflow: hidden;
+}
+
+#darkness {
+    position: fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 3;
+
+    background-color: rgb(6, 4, 12);
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+}
+
+
+
+#scene {
+    height: 100vh;
+    width: 100vw;
+}
+
+#candle_container {
+    position:absolute;
+    top: 2em;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 65vh;
+    width: 95vw;
+    margin: auto;
+
+    display:grid;
+    align-content: start;
+    justify-items: center;
+    column-gap: 0;
+    grid-template-columns: repeat(auto-fill, 30px);
+    grid-auto-rows: 50px;
+    grid-gap: 5px;
+
+    z-index: 0;
+
+}
+.candle {
+    height: 100px;
+}
+.candle_story {
+    visibility: hidden;
+    width: 130px;
+    background-color: black;
+    color: #ffffff;
+}
+
+#story_container {
+    position:absolute;
+    bottom: -1em;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 35vh;
+    width: 55vw;
+    margin: auto;
+    border-style: solid;
+    border-color:  rgba(15, 15, 23, 0.749);
+    border-width: 3px;
+
+    background-color:  rgba(67, 66, 89, 0.697);
+
+    padding:0.25em;
+
+    z-index: 5;
+}
+#ui_container {
+    display: flex;
+    gap: 1em;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+}
+#btn {
+    background-color:  rgba(15, 15, 23, 0.749);
+    color: white;
+    border: solid  rgb(78, 78, 110);
+    height:3em;
+}
+#text_container {
+    border: solid rgba(33, 33, 49, 0.749);
+    height: 62.5%;
+    width: 90%;
+
+    margin: 0.25em auto;
+    padding: 1em;
+
+    background-color: rgba(78, 78, 110, 0.776);
+    color: white;
+
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+}
