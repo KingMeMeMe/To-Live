@@ -2,6 +2,9 @@ var candles = 0;
 var unlit_candles = 0;
 // let unlit = false;
 const candle_container = document.getElementById('candle_container');
+
+const candle_story = document.getElementById('candle_story');
+
 const darkness = document.getElementById('darkness');
 
 const pronoun_options = [
@@ -299,7 +302,7 @@ function name_quip(name, pronouns){
 }
 
 async function generate_person(){
-    const url = "https://randomuser.me/api/?inc=gender,name"
+    const url = "https://randomuser.me/api/?inc=gender,name,nat=us,ca,nz"
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -330,7 +333,7 @@ async function generate_bio(){
     const id = await generate_person();
     const name = id['results'][0]['name']['first'];
     const pronouns = generate_pronouns(id['results'][0]['gender']);
-    const bio_length = getRandomInt(8, 15);
+    const bio_length = getRandomInt(8, 10);
 
     for (let i = 0; i < bio_length; i++){
        if (i == 0) {
@@ -368,6 +371,7 @@ async function lightACandle() {
     var darkness_level = window.getComputedStyle(darkness).getPropertyValue("opacity");
 
     let candle = document.createElement("img");
+    candle.dataset.txt = document.getElementById("story").innerHTML;
     candle.classList.add('candle');
     if (unlit) {
         unlit_candles += 1;
@@ -377,9 +381,29 @@ async function lightACandle() {
         candle.src = 'static/candle_test.png'
         darkness.style.opacity = (darkness_level - 0.025);
     }
+
     candle.style.filter = 'drop-shadow(3px -5px 2px rgba(15, 15, 23, 0.749)'
     candle.style.transform =`translateX(${getRandomInt(-7, 7)}px) translateY(${getRandomInt(-5, 5)}px)`;
     
     candle_container.append(candle);
 
 }
+
+candle_container.addEventListener("mouseover", function(el){
+    if (el.target.classList.contains("candle")) {
+        const target = el.target;
+        console.log(target.dataset.txt);
+
+        var x = el.clientX,
+        y = el.clientY;
+
+        candle_story.style.top = (y + 5) + 'px';
+        candle_story.style.left = (x + 5) + 'px';
+
+        candle_story.innerHTML = target.dataset.txt;
+        candle_story.style.display = 'block';
+    } else {
+        candle_story.innerHTML = '';
+        candle_story.style.display = 'none';
+    }
+})
