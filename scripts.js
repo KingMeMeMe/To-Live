@@ -333,7 +333,7 @@ async function generate_bio(){
     const id = await generate_person();
     const name = id['results'][0]['name']['first'];
     const pronouns = generate_pronouns(id['results'][0]['gender']);
-    const bio_length = getRandomInt(8, 10);
+    const bio_length = getRandomInt(8, 18);
 
     for (let i = 0; i < bio_length; i++){
        if (i == 0) {
@@ -348,7 +348,7 @@ async function generate_bio(){
        else {
         const line = generate_line(name, pronouns);
         document.getElementById("story").insertAdjacentElement('beforeend', document.createElement("br"));
-        if ((i == bio_length - 1) && Math.random() > 0.5){
+        if ((i == bio_length - 1) && Math.random() > 0.75){
             document.getElementById("story").insertAdjacentHTML('beforeend', line.substring(0, line.length-1)+'-');
             unlit = true;
         }
@@ -363,47 +363,47 @@ async function generate_bio(){
 
 
 
-async function lightACandle() {
-    candles += 1;
-    document.getElementById('candle_count').innerHTML = candles;
-    var unlit = await generate_bio();
+// async function lightACandle() {
+//     candles += 1;
+//     document.getElementById('candle_count').innerHTML = candles;
+//     var unlit = await generate_bio();
 
-    var darkness_level = window.getComputedStyle(darkness).getPropertyValue("opacity");
+//     var darkness_level = window.getComputedStyle(darkness).getPropertyValue("opacity");
 
-    let candle = document.createElement("img");
-    candle.dataset.txt = document.getElementById("story").innerHTML;
-    candle.classList.add('candle');
-    if (unlit) {
-        unlit_candles += 1;
-        candle.src = 'static/candleUnlit_test.png'
+//     let candle = document.createElement("img");
+//     candle.dataset.txt = document.getElementById("story").innerHTML;
+//     candle.classList.add('candle');
+//     if (unlit) {
+//         unlit_candles += 1;
+//         candle.src = 'static/candleUnlit_test.png'
 
-    } else {
-        candle.src = 'static/candle_test.png'
-        darkness.style.opacity = (darkness_level - 0.025);
-    }
+//     } else {
+//         candle.src = 'static/candle_test.png'
+//         darkness.style.opacity = (darkness_level - 0.025);
+//     }
 
-    candle.style.filter = 'drop-shadow(3px -5px 2px rgba(15, 15, 23, 0.749)'
-    candle.style.transform =`translateX(${getRandomInt(-7, 7)}px) translateY(${getRandomInt(-5, 5)}px)`;
+//     candle.style.filter = 'drop-shadow(3px -5px 2px rgba(15, 15, 23, 0.749)'
+//     candle.style.transform =`translateX(${getRandomInt(-7, 7)}px) translateY(${getRandomInt(-5, 5)}px)`;
     
-    candle_container.append(candle);
+//     candle_container.append(candle);
 
-}
+// }
 
-candle_container.addEventListener("mouseover", function(el){
-    if (el.target.classList.contains("candle")) {
-        const target = el.target;
-        console.log(target.dataset.txt);
+// candle_container.addEventListener("mouseover", function(el){
+//     if (el.target.classList.contains("candle")) {
+//         const target = el.target;
+//         console.log(target.dataset.txt);
 
-        var x = el.clientX,
-        y = el.clientY;
+//         var x = el.clientX,
+//         y = el.clientY;
 
-        candle_story.style.top = (y + 5) + 'px';
-        candle_story.style.left = (x + 5) + 'px';
+//         candle_story.style.top = (y + 5) + 'px';
+//         candle_story.style.left = (x + 5) + 'px';
 
-        candle_story.innerHTML = target.dataset.txt;
-        candle_story.style.display = 'block';
-    } else {
-        candle_story.innerHTML = '';
-        candle_story.style.display = 'none';
-    }
-})
+//         candle_story.innerHTML = target.dataset.txt;
+//         candle_story.style.display = 'block';
+//     } else {
+//         candle_story.innerHTML = '';
+//         candle_story.style.display = 'none';
+//     }
+// })
